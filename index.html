@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Скоро открытие | Красивый сайт-затычка</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow-x: hidden;
+            padding: 20px;
+            position: relative;
+        }
+        
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="none"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="rgba(255,255,255,0.03)" stroke-width="1"/></svg>');
+            z-index: -1;
+        }
+        
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            z-index: 2;
+        }
+        
+        .logo {
+            margin-bottom: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 3.5rem;
+            color: #4cc9f0;
+            animation: pulse 2s infinite alternate;
+        }
+        
+        .logo-text {
+            font-size: 2.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #4cc9f0, #4361ee);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: 1px;
+        }
+        
+        .main-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .highlight {
+            color: #4cc9f0;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #4361ee, #4cc9f0);
+            border-radius: 3px;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 30px;
+            color: #a5b4fc;
+            line-height: 1.6;
+        }
+        
+        .divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #4361ee, #4cc9f0);
+            margin: 30px auto;
+            border-radius: 2px;
+        }
+        
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 40px;
+            color: #e0e0ff;
+        }
+        
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 15px;
+            padding: 20px 15px;
+            min-width: 110px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s, background 0.3s;
+        }
+        
+        .countdown-item:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        .countdown-value {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #4cc9f0;
+            display: block;
+            line-height: 1;
+        }
+        
+        .countdown-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 10px;
+            color: #a5b4fc;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            width: 100%;
+            margin: 40px auto 0;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .form-title {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: #a5b4fc;
+        }
+        
+        .form-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        input {
+            flex: 1;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+        
+        input:focus {
+            border-color: #4cc9f0;
+            background: rgba(255, 255, 255, 0.12);
+        }
+        
+        input::placeholder {
+            color: #a5b4fc;
+        }
+        
+        button {
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            background: linear-gradient(to right, #4361ee, #4cc9f0);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+        }
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(67, 97, 238, 0.6);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .social-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            color: #a5b4fc;
+            font-size: 1.3rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        
+        .social-icon:hover {
+            background: linear-gradient(to right, #4361ee, #4cc9f0);
+            color: white;
+            transform: translateY(-5px);
+        }
+        
+        footer {
+            margin-top: 50px;
+            padding: 20px;
+            color: #a5b4fc;
+            font-size: 0.9rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+        }
+        
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 50%;
+            animation: float 20s infinite linear;
+        }
+        
+        .floating-element:nth-child(1) {
+            width: 80px;
+            height: 80px;
+            top: 10%;
+            left: 10%;
+            animation-delay: 0s;
+        }
+        
+        .floating-element:nth-child(2) {
+            width: 120px;
+            height: 120px;
+            top: 70%;
+            left: 80%;
+            animation-delay: -5s;
+        }
+        
+        .floating-element:nth-child(3) {
+            width: 60px;
+            height: 60px;
+            top: 20%;
+            left: 85%;
+            animation-delay: -10s;
+        }
+        
+        .floating-element:nth-child(4) {
+            width: 100px;
+            height: 100px;
+            top: 80%;
+            left: 15%;
+            animation-delay: -15s;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                text-shadow: 0 0 5px rgba(76, 201, 240, 0.5);
+            }
+            100% {
+                transform: scale(1.05);
+                text-shadow: 0 0 20px rgba(76, 201, 240, 0.8);
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            33% {
+                transform: translate(30px, -50px) rotate(120deg);
+            }
+            66% {
+                transform: translate(-20px, 20px) rotate(240deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(360deg);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .logo-text {
+                font-size: 2.2rem;
+            }
+            
+            .logo-icon {
+                font-size: 2.8rem;
+            }
+            
+            .main-content, .contact-form {
+                padding: 25px 20px;
+            }
+            
+            .form-group {
+                flex-direction: column;
+            }
+            
+            .countdown-item {
+                min-width: 90px;
+                padding: 15px 10px;
+            }
+            
+            .countdown-value {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .logo-text {
+                font-size: 1.8rem;
+            }
+            
+            .countdown {
+                gap: 10px;
+            }
+            
+            .countdown-item {
+                min-width: 70px;
+                padding: 12px 8px;
+            }
+            
+            .countdown-value {
+                font-size: 1.7rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    
+    <div class="container">
+        <div class="logo">
+            <i class="fas fa-rocket logo-icon"></i>
+            <div class="logo-text">NEXUS</div>
+        </div>
+        
+        <div class="main-content">
+            <h1>Скоро <span class="highlight">запуск</span> чего-то удивительного</h1>
+            <div class="subtitle">Мы усердно работаем над созданием уникального продукта, который изменит ваш опыт</div>
+            
+            <div class="divider"></div>
+            
+            <p class="description">
+                Наша команда разрабатывает инновационное решение, которое скоро будет доступно для вас. 
+                Мы находимся на финальной стадии разработки и с нетерпением ждем возможности представить 
+                наш продукт миру. Оставайтесь на связи!
+            </p>
+            
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-value" id="days">00</span>
+                    <span class="countdown-label">Дней</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="hours">00</span>
+                    <span class="countdown-label">Часов</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="minutes">00</span>
+                    <span class="countdown-label">Минут</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-value" id="seconds">00</span>
+                    <span class="countdown-label">Секунд</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="contact-form">
+            <h3 class="form-title">Узнайте первым о запуске</h3>
+            <form id="subscribe-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Ваше имя" required>
+                    <input type="email" placeholder="Ваш email" required>
+                </div>
+                <button type="submit">Сообщите мне <i class="fas fa-paper-plane"></i></button>
+            </form>
+        </div>
+        
+        <div class="social-links">
+            <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+        </div>
+        
+        <footer>
+            <p>&copy; 2023 NEXUS. Все права защищены. Сайт находится в разработке.</p>
+            <p style="margin-top: 10px; font-size: 0.8rem;">Свяжитесь с нами: info@nexus-example.ru | +7 (XXX) XXX-XX-XX</p>
+        </footer>
+    </div>
+
+    <script>
+        // Обратный отсчет до указанной даты
+        const countDownDate = new Date("Dec 31, 2023 23:59:59").getTime();
+        
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            document.getElementById("days").innerHTML = days.toString().padStart(2, '0');
+            document.getElementById("hours").innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById("minutes").innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById("seconds").innerHTML = seconds.toString().padStart(2, '0');
+            
+            if (distance < 0) {
+                clearInterval(countdownInterval);
+                document.querySelector(".countdown").innerHTML = "<h2>Мы запустились!</h2>";
+            }
+        }
+        
+        // Обновляем счетчик каждую секунду
+        const countdownInterval = setInterval(updateCountdown, 1000);
+        updateCountdown(); // Вызываем сразу, чтобы избежать задержки
+        
+        // Обработка формы
+        document.getElementById('subscribe-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const button = this.querySelector('button');
+            const originalText = button.innerHTML;
+            
+            button.innerHTML = '<i class="fas fa-check"></i> Готово!';
+            button.style.background = 'linear-gradient(to right, #2ecc71, #27ae60)';
+            
+            // Через 3 секунды возвращаем исходный вид
+            setTimeout(() => {
+                button.innerHTML = originalText;
+                button.style.background = 'linear-gradient(to right, #4361ee, #4cc9f0)';
+                this.reset();
+            }, 3000);
+            
+            // Здесь обычно отправка данных на сервер
+            console.log('Данные формы отправлены!');
+        });
+        
+        // Добавляем анимацию для элементов при скролле
+        window.addEventListener('scroll', function() {
+            const elements = document.querySelectorAll('.main-content, .contact-form, .countdown-item');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.2;
+                
+                if (elementPosition < screenPosition) {
+                    element.style.opacity = '1';
+                    element.style.transform = 'translateY(0)';
+                }
+            });
+        });
+        
+        // Инициализация анимаций при загрузке
+        window.addEventListener('load', function() {
+            document.querySelector('.main-content').style.opacity = '1';
+            document.querySelector('.main-content').style.transform = 'translateY(0)';
+        });
+        
+        // Изначальные стили для анимации появления
+        document.querySelector('.main-content').style.opacity = '0';
+        document.querySelector('.main-content').style.transform = 'translateY(20px)';
+        document.querySelector('.contact-form').style.opacity = '0';
+        document.querySelector('.contact-form').style.transform = 'translateY(20px)';
+        
+        const countdownItems = document.querySelectorAll('.countdown-item');
+        countdownItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transitionDelay = (index * 0.1) + 's';
+        });
+    </script>
+</body>
+</html>
